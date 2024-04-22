@@ -1,9 +1,8 @@
-import { FC } from "react";
-import Link from "next/link";
+import { FC } from 'react';
+import Link from 'next/link';
 
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { useAutoConnect } from "../contexts/AutoConnectProvider";
-import NetworkSwitcher from "./NetworkSwitcher";
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { useAutoConnect } from '../contexts/AutoConnectProvider';
 
 export const AppBar: FC = (props) => {
   const { autoConnect, setAutoConnect } = useAutoConnect();
@@ -11,25 +10,9 @@ export const AppBar: FC = (props) => {
   return (
     <div>
       {/* NavBar / Header */}
-      <div className="navbar flex flex-row bg-neutral text-neutral-content shadow-lg md:mb-2">
+      <div className="navbar flex flex-row md:mb-2 shadow-lg bg-neutral text-neutral-content">
         <div className="navbar-start">
-          <label htmlFor="my-drawer" className="btn btn-ghost btn-square">
-            <svg
-              className="inline-block h-6 w-6 stroke-current"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </label>
-
-          <div className="w-22 h-22 hidden sm:inline md:p-2">
+          <div className="hidden sm:inline w-22 h-22 md:p-2">
             <svg
               width="100%"
               height="22"
@@ -91,34 +74,24 @@ export const AppBar: FC = (props) => {
           </div>
         </div>
 
-        {/* Nav Links */}
-        <div className="hidden md:navbar-center md:inline">
-          <div className="flex items-stretch">
-            <Link href="/">
-              <a className="btn btn-ghost rounded-btn btn-sm">Home</a>
-            </Link>
-            <Link href="/create">
-              <a className="btn btn-ghost rounded-btn btn-sm">Create token</a>
-            </Link>
-            <Link href="/upload">
-              <a className="btn btn-ghost rounded-btn btn-sm">
-                Upload metadata
-              </a>
-            </Link>
-            <Link href="/misc">
-              <a className="btn btn-ghost rounded-btn btn-sm">Miscellaneous</a>
-            </Link>
-          </div>
-        </div>
-
         {/* Wallet & Settings */}
         <div className="navbar-end">
-          <WalletMultiButton className="btn btn-ghost mr-4" />
-
-          <div className="dropdown-end dropdown">
-            <div tabIndex={0} className="btn btn-ghost btn-square text-right">
+          <Link href="/">
+            <a className="mr-8">Token Creator</a>
+          </Link>
+          <Link href="/update">
+            <a className="mr-4">Update Metadata</a>
+          </Link>
+          <Link href="/uploader">
+            <a className="mr-8">Upload Metadata</a>
+          </Link>
+          <Link href="/metadata">
+            <a className="mr-4">Token Metadata</a>
+          </Link>
+          <div className="dropdown">
+            <div tabIndex={0} className="btn btn-square btn-ghost text-right">
               <svg
-                className="h-6 w-6"
+                className="w-6 h-6"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -140,11 +113,11 @@ export const AppBar: FC = (props) => {
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content menu rounded-box bg-base-100 p-2 shadow sm:w-52"
+              className="p-2 shadow menu dropdown-content bg-base-100 rounded-box sm:w-52"
             >
               <li>
                 <div className="form-control">
-                  <label className="label cursor-pointer">
+                  <label className="cursor-pointer label">
                     <a>Autoconnect</a>
                     <input
                       type="checkbox"
@@ -153,12 +126,11 @@ export const AppBar: FC = (props) => {
                       className="toggle"
                     />
                   </label>
-
-                  <NetworkSwitcher />
                 </div>
               </li>
             </ul>
           </div>
+          <WalletMultiButton className="btn btn-ghost mr-4" />
         </div>
       </div>
       {props.children}
