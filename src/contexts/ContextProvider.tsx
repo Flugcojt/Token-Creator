@@ -17,8 +17,8 @@ import { notify } from "../utils/notifications";
 
 const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const { autoConnect } = useAutoConnect();
-    const network = WalletAdapterNetwork.Mainnet;
-    const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+    const network = process.env.REACT_APP_NETWORK as WalletAdapterNetwork;
+    const endpoint = process.env.REACT_APP_SOLANA_RPC_HOST;
 
     const wallets = useMemo(
         () => [
